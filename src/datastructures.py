@@ -13,32 +13,55 @@ class FamilyStructure:
         self.last_name = last_name
 
         # example list of members
-        self._members = []
+        self._members = [{
+            "id" : self.generateId(),
+            "first_name" : "John",
+            "last_name" : self.last_name,
+            "age" : 33,
+            "lucky_numbers" : [7, 13, 22]
+        }, {
+            "id" : self.generateId(),
+            "first_name" : "Jane",
+            "last_name" : self.last_name,
+            "age" : 35,
+            "lucky_numbers" : [10, 14, 3]
+        }, {
+            "id" : self.generateId(),
+            "first_name" : "Jimmy",
+            "last_name" : self.last_name,
+            "age" : 5,
+            "lucky_numbers" : [1]
+        }]
 
     # read-only: Use this method to generate random members ID's when adding members into the list
-    def _generateId(self):
+    def generateId(self):
         return randint(0, 99999999)
 
     def add_member(self, member):
         self._members.append(member)
-        # fill this method and update the return
-        return None
+        return self._members
+
 
     def delete_member(self, id):
-        # fill this method and update the return
         for position in range(len(self._members)):
             if self._members[position]["id"] == id:
                 self._members.pop(position)
-                return None
-        
+                return self._members
 
-    def get_member(self, id):
-        # fill this method and update the return
+    def update_member(self, id, member):
         for m in self._members:
             if m["id"] == int(id):
-                return m
-
-        return None
+                m =  member
+            
+        return member
+              
+    def get_member(self, id):
+        member = []
+        for m in self._members:
+            if m["id"] == int(id):
+                member =  m
+   
+        return member
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
